@@ -1,0 +1,2 @@
+export function AdminPageHeader({ title, description, action }: { title: string; description?: string; action?: React.ReactNode }) { return <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-start"><div><h1 className="font-heading text-3xl font-bold">{title}</h1>{description && <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted-foreground)]">{description}</p>}</div>{action}</div>; }
+

@@ -1,0 +1,2 @@
+export function Progress({ value, color = "var(--primary)" }: { value: number; color?: string }) { return <div className="h-2 overflow-hidden rounded-full bg-[var(--muted)]" role="progressbar" aria-valuenow={value} aria-valuemin={0} aria-valuemax={100} aria-label={`Progres ${value}%`}><div className="h-full rounded-full transition-all" style={{ width: `${value}%`, background: color }} /></div>; }
+

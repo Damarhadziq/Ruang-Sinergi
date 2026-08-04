@@ -1,0 +1,5 @@
+(node:18336) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2mDefault inspector port 9229 not available, using 9231 instead
+[22m
+(node:18336) ExperimentalWarning: glob is an experimental feature and might change at any time

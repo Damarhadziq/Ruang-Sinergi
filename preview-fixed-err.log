@@ -1,0 +1,59 @@
+(node:34288) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:34288) ExperimentalWarning: glob is an experimental feature and might change at any time
+[2m18.55.00[22m [33m[1m[vite][22m[39m [33m[2m(rsc)[22m[39m [33mwarning: client component dependency is inconsistently optimized. It's recommended to add the dependency to 'optimizeDeps.exclude'.[39m
+  Plugin: [35mrsc:use-client[39m
+  File: [36mC:/Users/Acer/OneDrive/Documents/RuangSinergi/node_modules/lucide-react/dist/esm/Icon.mjs?v=16f16b5b[39m
+[2m19.08.43[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /app/editor/page.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[2m19.10.17[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: Error: Connection closed.
+    at close (http://localhost:3000/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=d8e7419f:2363:36)
+    at progress (http://localhost:3000/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=d8e7419f:2436:28)
+[2m19.10.18[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: Error: Connection closed.
+    at close (http://localhost:3000/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=d8e7419f:2363:36)
+    at progress (http://localhost:3000/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=d8e7419f:2436:28)
+[2m19.10.18[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: TypeError: Failed to fetch
+    at handleRscUpdate (http://localhost:3000/node_modules/vinext/dist/server/app-browser-entry.js?v=d8e7419f:582:95)
+[2m19.10.18[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: TypeError: Failed to fetch
+    at handleRscUpdate (http://localhost:3000/node_modules/vinext/dist/server/app-browser-entry.js?v=d8e7419f:582:95)
+[2m19.10.18[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: TypeError: Failed to fetch
+    at handleRscUpdate (http://localhost:3000/node_modules/vinext/dist/server/app-browser-entry.js?v=d8e7419f:582:95)
+[2m19.10.18[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: TypeError: Failed to fetch
+    at handleRscUpdate (http://localhost:3000/node_modules/vinext/dist/server/app-browser-entry.js?v=d8e7419f:582:95)
+[2m19.10.18[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: TypeError: Failed to fetch
+    at handleRscUpdate (http://localhost:3000/node_modules/vinext/dist/server/app-browser-entry.js?v=d8e7419f:582:95)
+[2m19.10.18[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: TypeError: Failed to fetch
+    at handleRscUpdate (http://localhost:3000/node_modules/vinext/dist/server/app-browser-entry.js?v=d8e7419f:582:95)
+[2m19.10.18[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: TypeError: Failed to fetch
+    at handleRscUpdate (http://localhost:3000/node_modules/vinext/dist/server/app-browser-entry.js?v=d8e7419f:582:95)
+[2m19.10.18[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: TypeError: Failed to fetch
+    at handleRscUpdate (http://localhost:3000/node_modules/vinext/dist/server/app-browser-entry.js?v=d8e7419f:582:95)
+[2m19.10.18[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: TypeError: Failed to fetch
+    at handleRscUpdate (http://localhost:3000/node_modules/vinext/dist/server/app-browser-entry.js?v=d8e7419f:582:95)
+[2m19.10.18[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: TypeError: Failed to fetch
+    at handleRscUpdate (http://localhost:3000/node_modules/vinext/dist/server/app-browser-entry.js?v=d8e7419f:582:95)
+Detected multiple renderers concurrently rendering the same context provider. This is currently unsupported.
+Detected multiple renderers concurrently rendering the same context provider. This is currently unsupported.
+[2m19.28.20[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to load url /components/layout/footer.tsx (resolved id: C:/Users/Acer/OneDrive/Documents/RuangSinergi/components/layout/footer.tsx) in C:/Users/Acer/OneDrive/Documents/RuangSinergi/app/(public)/layout.tsx. Does the file exist?[39m
+      at runInRunnerObject (workers/runner-worker/index.js:107:3)
+      at getWorkerEntryExport (workers/runner-worker/index.js:235:17)
+      at null.<anonymous> (workers/runner-worker/index.js:354:24)
+      at maybeCaptureError (workers/runner-worker/index.js:51:10)
+[2m19.28.20[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /components/layout/site-header.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[2m19.28.21[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to load url /components/layout/footer.tsx (resolved id: C:/Users/Acer/OneDrive/Documents/RuangSinergi/components/layout/footer.tsx) in C:/Users/Acer/OneDrive/Documents/RuangSinergi/app/(public)/layout.tsx. Does the file exist?[39m
+      at runInRunnerObject (workers/runner-worker/index.js:107:3)
+      at getWorkerEntryExport (workers/runner-worker/index.js:235:17)
+      at null.<anonymous> (workers/runner-worker/index.js:354:24)
+      at maybeCaptureError (workers/runner-worker/index.js:51:10)
+[2m19.28.21[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: Error: Connection closed.
+    at close (http://localhost:3000/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=d8e7419f:2363:36)
+    at progress (http://localhost:3000/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=d8e7419f:2436:28)
+[2m19.28.21[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to load url /components/layout/footer.tsx (resolved id: C:/Users/Acer/OneDrive/Documents/RuangSinergi/components/layout/footer.tsx) in C:/Users/Acer/OneDrive/Documents/RuangSinergi/app/(public)/layout.tsx. Does the file exist?[39m
+      at runInRunnerObject (workers/runner-worker/index.js:107:3)
+      at getWorkerEntryExport (workers/runner-worker/index.js:235:17)
+      at null.<anonymous> (workers/runner-worker/index.js:354:24)
+      at maybeCaptureError (workers/runner-worker/index.js:51:10)
+[2m19.28.21[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: Error: Connection closed.
+    at close (http://localhost:3000/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=d8e7419f:2363:36)
+    at progress (http://localhost:3000/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=d8e7419f:2436:28)
+Detected multiple renderers concurrently rendering the same context provider. This is currently unsupported.
+Detected multiple renderers concurrently rendering the same context provider. This is currently unsupported.
