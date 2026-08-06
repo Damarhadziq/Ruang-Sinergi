@@ -1,23 +1,34 @@
 "use client";
 
-import { Check, ChevronDown } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import * as SelectPrimitive from "@radix-ui/react-select";
+import { Check, ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export type SelectOption = { value: string; label: string };
 
 export function Select({ value, onValueChange, options, label, className }: { value: string; onValueChange: (value: string) => void; options: SelectOption[]; label: string; className?: string }) {
-  const [open, setOpen] = useState(false);
-  const root = useRef<HTMLDivElement>(null);
   const current = options.find((option) => option.value === value) ?? options[0];
 
-  useEffect(() => {
-    const close = (event: MouseEvent) => { if (!root.current?.contains(event.target as Node)) setOpen(false); };
-    const escape = (event: KeyboardEvent) => { if (event.key === "Escape") setOpen(false); };
-    document.addEventListener("mousedown", close);
-    document.addEventListener("keydown", escape);
-    return () => { document.removeEventListener("mousedown", close); document.removeEventListener("keydown", escape); };
-  }, []);
-
-  return <div ref={root} className={cn("relative", className)}><button type="button" aria-label={label} aria-haspopup="listbox" aria-expanded={open} onClick={() => setOpen(!open)} className="control flex h-9 items-center justify-between gap-2 rounded-lg px-3 text-left text-xs"><span className="truncate">{current.label}</span><ChevronDown size={14} className={cn("shrink-0 text-[var(--muted-foreground)] transition-transform duration-200", open && "rotate-180")} /></button><div role="listbox" aria-label={label} aria-hidden={!open} data-state={open ? "open" : "closed"} className="motion-popover scrollbar-subtle absolute z-50 mt-1.5 max-h-56 w-full min-w-44 overflow-y-auto rounded-lg border border-[var(--border)] bg-white p-1">{options.map((option) => <button key={option.value} type="button" role="option" tabIndex={open ? 0 : -1} aria-selected={option.value === value} onClick={() => { onValueChange(option.value); setOpen(false); }} className={cn("flex min-h-8 w-full items-center justify-between rounded-md px-2.5 py-1.5 text-left text-xs leading-4 transition-colors hover:bg-[#f5f7f5]", option.value === value && "font-semibold text-[#245744]")}><span>{option.label}</span>{option.value === value && <Check size={14} />}</button>)}</div></div>;
+  return (
+    <SelectPrimitive.Root value={value} onValueChange={onValueChange}>
+      <SelectPrimitive.Trigger aria-label={label} className={cn("select-trigger-control group flex h-10 w-full items-center justify-between gap-2 rounded-xl border border-[var(--border)] bg-white px-3 text-left text-[13px] text-[var(--foreground)] outline-none transition-colors focus-visible:border-[var(--focus-border)] focus-visible:outline-none data-[state=open]:border-[var(--focus-border)]", className)}>
+        <SelectPrimitive.Value>{current.label}</SelectPrimitive.Value>
+        <SelectPrimitive.Icon asChild><ChevronDown size={16} className="size-4 shrink-0 text-[var(--muted-foreground)] transition-transform duration-150 group-data-[state=open]:rotate-180" /></SelectPrimitive.Icon>
+      </SelectPrimitive.Trigger>
+      <SelectPrimitive.Portal>
+        <SelectPrimitive.Content position="popper" sideOffset={6} collisionPadding={12} className="select-content scrollbar-subtle z-[90] max-h-60 w-[var(--radix-select-trigger-width)] overflow-hidden rounded-xl border border-[var(--border)] bg-white text-sm">
+          <SelectPrimitive.ScrollUpButton aria-label="Gulir opsi ke atas" title="Gulir opsi ke atas" className="flex h-7 items-center justify-center text-[var(--muted-foreground)]"><ChevronUp size={16} className="size-4" /></SelectPrimitive.ScrollUpButton>
+          <SelectPrimitive.Viewport className="max-h-44 w-full p-1">
+            {options.map((option) => (
+              <SelectPrimitive.Item key={option.value} value={option.value} className="select-item-control relative flex min-h-8 cursor-default select-none items-center rounded-lg py-1.5 pl-2.5 pr-8 text-[13px] leading-5 text-[var(--muted-foreground)] outline-none transition-colors data-[highlighted]:bg-[#f3f6f4] data-[highlighted]:text-[var(--foreground)] data-[state=checked]:font-medium data-[state=checked]:text-[var(--primary)]">
+                <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
+                <SelectPrimitive.ItemIndicator className="absolute right-2.5 inline-flex items-center"><Check size={16} className="size-4" /></SelectPrimitive.ItemIndicator>
+              </SelectPrimitive.Item>
+            ))}
+          </SelectPrimitive.Viewport>
+          <SelectPrimitive.ScrollDownButton aria-label="Gulir opsi ke bawah" title="Gulir opsi ke bawah" className="flex h-7 items-center justify-center text-[var(--muted-foreground)]"><ChevronDown size={16} className="size-4" /></SelectPrimitive.ScrollDownButton>
+        </SelectPrimitive.Content>
+      </SelectPrimitive.Portal>
+    </SelectPrimitive.Root>
+  );
 }

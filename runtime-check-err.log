@@ -1,0 +1,21 @@
+(node:15692) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2mDefault inspector port 9229 not available, using 9230 instead
+[22m
+(node:15692) ExperimentalWarning: glob is an experimental feature and might change at any time
+[2m08.12.08[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to load url /components/layout/footer.tsx (resolved id: C:/Users/Acer/OneDrive/Documents/RuangSinergi/components/layout/footer.tsx) in C:/Users/Acer/OneDrive/Documents/RuangSinergi/app/(public)/layout.tsx. Does the file exist?[39m
+      at runInRunnerObject (workers/runner-worker/index.js:107:3)
+      at getWorkerEntryExport (workers/runner-worker/index.js:235:17)
+      at null.<anonymous> (workers/runner-worker/index.js:354:24)
+      at maybeCaptureError (workers/runner-worker/index.js:51:10)
+[2m08.12.08[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /components/layout/site-header.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[2m08.12.09[22m [31m[1m[vite][22m[39m [31mInternal server error: Failed to load url /components/layout/footer.tsx (resolved id: C:/Users/Acer/OneDrive/Documents/RuangSinergi/components/layout/footer.tsx) in C:/Users/Acer/OneDrive/Documents/RuangSinergi/app/(public)/layout.tsx. Does the file exist?[39m
+      at runInRunnerObject (workers/runner-worker/index.js:107:3)
+      at getWorkerEntryExport (workers/runner-worker/index.js:235:17)
+      at null.<anonymous> (workers/runner-worker/index.js:354:24)
+      at maybeCaptureError (workers/runner-worker/index.js:51:10)
+[2m08.12.09[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vinext] RSC HMR error: Error: Connection closed.
+    at close (http://localhost:3001/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=7f95a109:2364:36)
+    at progress (http://localhost:3001/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=7f95a109:2437:28)
+Detected multiple renderers concurrently rendering the same context provider. This is currently unsupported.
+Detected multiple renderers concurrently rendering the same context provider. This is currently unsupported.

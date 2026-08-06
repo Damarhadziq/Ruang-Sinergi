@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: { default: "Ruang Sinergi", template: "%s · Ruang Sinergi" },
     description: "Portal pembelajaran multidisiplin SMK Negeri 1 Semarang.",
-    icons: { icon: "/logo-sinergi.svg", shortcut: "/logo-sinergi.svg", apple: "/logo-sinergi.svg" },
+    icons: { icon: "/favicon.svg", shortcut: "/favicon.svg", apple: "/favicon.svg" },
     openGraph: { title: "Ruang Sinergi", description: "Belajar lintas keahlian untuk masa depan yang lebih siap.", images: [image] },
     twitter: { card: "summary_large_image", title: "Ruang Sinergi", description: "Belajar lintas keahlian untuk masa depan yang lebih siap.", images: [image] },
   };
