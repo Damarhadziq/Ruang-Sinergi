@@ -1,5 +1,21 @@
 import Link from "next/link";
 
+const socialLinks = [
+  { href: "https://www.instagram.com/", label: "Instagram" },
+  { href: "https://www.youtube.com/", label: "YouTube" },
+  { href: "https://www.tiktok.com/", label: "TikTok" },
+];
+
 export function Footer() {
-  return <footer className="mt-20 border-t border-[var(--border)] bg-white"><div className="container-app grid gap-10 py-12 md:grid-cols-[1.5fr_1fr_1fr]"><div><div className="mb-3 font-heading font-bold">Ruang Sinergi</div><p className="max-w-md text-sm leading-6 text-[var(--muted-foreground)]">Portal belajar lintas keahlian untuk siswa SMK Negeri 1 Semarang. Materi dibuat dekat dengan praktik, karya, dan kebutuhan dunia kerja.</p></div><div><p className="mb-3 text-sm font-semibold">Belajar</p><div className="grid gap-2 text-sm text-[var(--muted-foreground)]"><Link href="/jelajahi">Materi</Link><Link href="/latihan">Latihan interaktif</Link><Link href="/program/persiapan-dunia-kerja">Program</Link></div></div><div><p className="mb-3 text-sm font-semibold">Ruang Sinergi</p><div className="grid gap-2 text-sm text-[var(--muted-foreground)]"><Link href="/galeri">Galeri karya</Link><Link href="/tentang">Tentang kami</Link></div></div></div><div className="py-5 text-center text-xs text-[var(--muted-foreground)]">© 2026 Ruang Sinergi · SMK Negeri 1 Semarang</div></footer>;
+  return (
+    <footer className="game-footer mt-16 border-t border-[#ececec] bg-white">
+      <div className="container-app flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:justify-between">
+        <Link href="/" className="font-heading text-base font-semibold leading-[1.3] tracking-[-0.01em] text-[var(--foreground)]">Ruang Sinergi</Link>
+        <nav aria-label="Media sosial" className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-medium leading-[1.45] tracking-[0.01em] text-[var(--muted-foreground)]">
+          {socialLinks.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noreferrer" className="transition-colors hover:text-[var(--primary)]">{link.label}</a>)}
+        </nav>
+        <p className="text-meta text-[var(--muted-foreground)]">© 2026 SMK Negeri 1 Semarang</p>
+      </div>
+    </footer>
+  );
 }

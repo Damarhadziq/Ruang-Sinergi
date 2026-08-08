@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const adminNav = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/materi", label: "Materi", icon: FolderOpen },
-  { href: "/admin/program-studi", label: "Program studi", icon: GraduationCap },
+  { href: "/admin/program-studi", label: "Bidang", icon: GraduationCap },
   { href: "/admin/program", label: "Program kolaborasi", icon: Users },
   { href: "/admin/galeri", label: "Galeri", icon: Images },
   { href: "/admin/media", label: "Media", icon: FolderOpen },

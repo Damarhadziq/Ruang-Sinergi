@@ -2,14 +2,14 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const buttonVariants = cva("inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)]/25 disabled:pointer-events-none disabled:opacity-50", {
+export const buttonVariants = cva("ui-button inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[10px] border text-sm font-medium leading-[1.25] tracking-normal transition-[transform,background-color,border-color,color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2476f3]/20 disabled:pointer-events-none disabled:opacity-50", {
   variants: {
     variant: {
-      default: "bg-[var(--primary)] text-white hover:bg-[#274b3f]",
-      secondary: "bg-[var(--secondary)] text-[#27483c] hover:bg-[#dde7e0]",
-      outline: "border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:bg-[var(--muted)]",
-      ghost: "text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)]",
-      destructive: "bg-[var(--destructive)] text-white hover:bg-[#8f372e]",
+      default: "ui-button-primary border-[#0d59d7] text-white",
+      secondary: "ui-button-secondary border-[#bdd3ee] text-[#24558c]",
+      outline: "ui-button-outline border-[#d3dfed] bg-white text-[#294563]",
+      ghost: "ui-button-ghost border-transparent text-[#4c6681]",
+      destructive: "ui-button-destructive border-[#a83c32] text-white",
     },
     size: { default: "h-11 px-4", sm: "h-9 px-3", lg: "h-11 px-5", icon: "h-10 w-10" },
   },

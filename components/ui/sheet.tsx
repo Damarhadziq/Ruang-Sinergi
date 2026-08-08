@@ -24,9 +24,9 @@ export function SheetHeader({ className, ...props }: React.HTMLAttributes<HTMLDi
 }
 
 export function SheetTitle({ className, ...props }: React.ComponentProps<typeof SheetPrimitive.Title>) {
-  return <SheetPrimitive.Title className={cn("font-heading text-xl font-bold leading-tight", className)} {...props} />;
+  return <SheetPrimitive.Title className={cn("text-card-title", className)} {...props} />;
 }
 
 export function SheetDescription({ className, ...props }: React.ComponentProps<typeof SheetPrimitive.Description>) {
-  return <SheetPrimitive.Description className={cn("text-sm leading-6 text-[var(--muted-foreground)]", className)} {...props} />;
+  return <SheetPrimitive.Description className={cn("text-small text-[var(--muted-foreground)]", className)} {...props} />;
 }

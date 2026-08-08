@@ -1,30 +1,79 @@
 import Link from "next/link";
-import { ArrowRight, BookOpenCheck, CircleCheck, Compass, PlayCircle, Users } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { DirectionArrowRight } from "@/components/ui/direction-icon";
+import Book2 from "@solar-icons/react/ssr/school/Book2";
+import Gamepad from "@solar-icons/react/ssr/devices/Gamepad";
 import { Button } from "@/components/ui/button";
 import { DepartmentCard } from "@/components/cards/department-card";
 import { MaterialCard } from "@/components/cards/material-card";
-import { departments, gallery, materials, programs } from "@/data/mock-data";
+import { departments, materials, programs } from "@/data/mock-data";
 
 export default function HomePage() {
-  return <main>
-    <section className="bg-[var(--surface)]">
-      <div className="container-app grid min-h-[620px] items-center gap-12 py-12 lg:grid-cols-[1.02fr_.98fr] lg:py-14">
-        <div className="max-w-2xl"><Badge className="mb-5 bg-[var(--secondary)] text-[var(--primary)]">Portal belajar SMK Negeri 1 Semarang</Badge><h1 className="font-heading text-[42px] font-bold leading-[1.12] sm:text-[52px]">Belajar lintas keahlian untuk masa depan yang lebih siap.</h1><p className="mt-6 max-w-xl text-base leading-7 text-[var(--muted-foreground)]">Ruang Sinergi mempertemukan materi, pengalaman praktik, dan karya dari enam program studi dalam satu ruang belajar yang mudah dijelajahi.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link href="/jelajahi"><Button className="w-full sm:w-auto">Jelajahi materi <ArrowRight size={17} /></Button></Link><Link href="/program/persiapan-dunia-kerja"><Button variant="outline" className="w-full sm:w-auto"><PlayCircle size={17} />Lihat program kolaborasi</Button></Link></div><div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-[var(--muted-foreground)]"><span className="flex items-center gap-2"><CircleCheck size={17} className="text-[var(--success)]" />Materi terkurasi guru</span><span className="flex items-center gap-2"><CircleCheck size={17} className="text-[var(--success)]" />Siap diakses dari ponsel</span></div></div>
-        <div className="relative mx-auto w-full max-w-[540px]"><div className="overflow-hidden rounded-xl border border-[var(--border)] bg-white p-3"><img src={materials[5].image} alt="Siswa SMK mempelajari praktik otomotif" className="aspect-[4/3] w-full rounded-xl object-cover" /></div><div className="absolute -bottom-5 left-5 right-5 grid grid-cols-2 gap-3 sm:left-auto sm:right-[-10px] sm:w-[330px]"><div className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4"><p className="text-sm text-[var(--muted-foreground)]">Materi aktif</p><p className="mt-1 font-heading text-2xl font-bold">158+</p></div><div className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4"><p className="text-sm text-[var(--muted-foreground)]">Kontributor</p><p className="mt-1 font-heading text-2xl font-bold">35</p></div></div></div>
+  const featuredMaterials = materials.filter((item) => item.featured).slice(0, 3);
+
+  return (
+    <main className="learning-dashboard">
+      <div className="container-app py-8 sm:py-10">
+        <section className="dashboard-hero dashboard-hero-compact dashboard-hero--image-bg">
+          <div className="dashboard-hero-copy">
+            <h1 className="text-page-title max-w-[460px] text-white">Taklukkan satu misi kecil setiap hari.</h1>
+            <p className="text-body-lg mt-4 max-w-prose text-white/85">
+              Pilih materi sesuai jurusanmu, selesaikan aktivitasnya, lalu uji pemahaman lewat latihan interaktif.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Link href="/latihan">
+                <Button variant="secondary" className="hero-white-button w-full sm:w-auto">
+                  <Gamepad size={17} weight="BoldDuotone" />Mulai latihan
+                </Button>
+              </Link>
+              <Link href="/jelajahi">
+                <Button variant="outline" className="hero-white-button w-full sm:w-auto">
+                  <Book2 size={17} weight="BoldDuotone" />Cari materi
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="dashboard-hero-progress">
+            <div className="text-meta flex items-center justify-between text-white"><span>Progres tantangan</span><span>2 dari 3</span></div>
+            <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/20"><div className="h-full w-2/3 rounded-full bg-[#9bcbff]" /></div>
+          </div>
+        </section>
+
+        <section className="dashboard-section">
+          <div className="dashboard-section-heading">
+            <h2 className="dashboard-title">Pilih arena jurusanmu</h2>
+          </div>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {departments.map((department) => <DepartmentCard key={department.slug} department={department} />)}
+          </div>
+        </section>
+
+        <section className="dashboard-section">
+          <div className="dashboard-section-heading">
+            <h2 className="dashboard-title">Misi pilihan untukmu</h2>
+            <Link href="/jelajahi" className="dashboard-link">Lihat semua <DirectionArrowRight size={15} /></Link>
+          </div>
+          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredMaterials.map((material) => <MaterialCard key={material.slug} material={material} />)}
+          </div>
+        </section>
+
+        <section className="dashboard-section pb-8">
+          <div className="dashboard-section-heading"><h2 className="dashboard-title">Tantangan bersama</h2></div>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {programs.map((program, index) => (
+              <Link href={"/program/" + program.slug} key={program.slug} className="dashboard-quest">
+                <span className="quest-index">{String(index + 1).padStart(2, "0")}</span>
+                <div className="min-w-0">
+                  <p className="text-label line-clamp-1">{program.title}</p>
+                  <p className="text-meta mt-1 text-[var(--muted-foreground)]">{program.departments.length} bidang · tantangan kolaborasi</p>
+                </div>
+                <DirectionArrowRight size={16} className="shrink-0 text-[var(--primary)]" />
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
-    </section>
-
-    <section className="container-app py-12"><div className="grid grid-cols-2 gap-6 md:grid-cols-4">{[{ value: "6", label: "Program studi" }, { value: "158+", label: "Materi belajar" }, { value: "35", label: "Guru kontributor" }, { value: "3", label: "Program kolaborasi" }].map((stat) => <div key={stat.label} className="px-4 py-7 text-center"><p className="font-heading text-3xl font-bold sm:text-4xl">{stat.value}</p><p className="mt-2 text-sm text-[var(--muted-foreground)]">{stat.label}</p></div>)}</div></section>
-
-    <section id="program-studi" className="container-app section-space scroll-mt-20"><div className="grid gap-10 lg:grid-cols-[340px_1fr]"><div><p className="eyebrow">Program studi</p><h2 className="section-title mt-2">Belajar dari bidang yang kamu tekuni.</h2><p className="mt-4 text-base leading-7 text-[var(--muted-foreground)]">Setiap program studi memiliki warna dan media khas, namun tetap berada dalam pengalaman belajar yang konsisten.</p><Link href="/jelajahi" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)]">Lihat seluruh materi <ArrowRight size={16} /></Link></div><div className="grid sm:grid-cols-2 lg:grid-cols-3">{departments.map((department) => <DepartmentCard key={department.slug} department={department} />)}</div></div></section>
-
-    <section className="bg-[var(--surface)]"><div className="container-app section-space"><div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p className="eyebrow">Materi pilihan</p><h2 className="section-title mt-2">Mulai dari materi yang dekat dengan praktik.</h2></div><Link href="/jelajahi"><Button variant="outline">Semua materi <ArrowRight size={16} /></Button></Link></div><div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{materials.filter((item) => item.featured).slice(0, 3).map((material) => <MaterialCard key={material.slug} material={material} />)}</div></div></section>
-
-    <section className="container-app section-space"><div className="grid gap-12 lg:grid-cols-[.9fr_1.1fr]"><div className="lg:sticky lg:top-28 lg:self-start"><p className="eyebrow">Program kolaborasi</p><h2 className="section-title mt-2">Satu persoalan, beberapa sudut pandang.</h2><p className="mt-4 max-w-md leading-7 text-[var(--muted-foreground)]">Program kolaborasi menyusun materi lintas bidang menjadi alur belajar yang relevan dengan kehidupan sekolah dan dunia kerja.</p></div><div className="grid gap-2">{programs.map((program, index) => <Link href={`/program/${program.slug}`} key={program.slug} className="group grid gap-4 rounded-xl px-3 py-6 transition-colors hover:bg-[#fcfcfc] sm:grid-cols-[44px_1fr_auto] sm:items-center"><span className="font-heading text-xl font-bold text-[var(--muted-foreground)]">0{index + 1}</span><div><h3 className="font-heading text-xl font-bold">{program.title}</h3><p className="mt-2 text-sm leading-6 text-[var(--muted-foreground)]">{program.description}</p></div><ArrowRight size={18} className="hidden text-[var(--muted-foreground)] sm:block" /></Link>)}</div></div></section>
-
-    <section className="bg-white"><div className="container-app section-space"><div className="mb-8 flex items-end justify-between gap-5"><div><p className="eyebrow">Karya siswa</p><h2 className="section-title mt-2">Hasil belajar yang bisa dilihat dan dibagikan.</h2></div><Link href="/galeri" className="hidden items-center gap-2 text-sm font-semibold text-[var(--primary)] sm:flex">Buka galeri <ArrowRight size={16} /></Link></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{gallery.slice(0, 4).map((item) => <Link href="/galeri" key={item.id} className="group"><img src={item.image} alt={item.title} className="aspect-[4/3] w-full rounded-xl border border-[var(--border)] object-cover" /><h3 className="mt-3 font-heading font-bold">{item.title}</h3><p className="mt-1 text-sm text-[var(--muted-foreground)]">{item.student}</p></Link>)}</div></div></section>
-
-    <section className="container-app py-16"><div className="grid items-center gap-10 py-10 lg:grid-cols-[1fr_auto]"><div className="max-w-2xl"><p className="eyebrow">Tentang Ruang Sinergi</p><h2 className="mt-2 font-heading text-3xl font-bold">Ruang belajar yang dibuat untuk saling melengkapi.</h2><p className="mt-4 leading-7 text-[var(--muted-foreground)]">Kami membantu guru menyusun media pembelajaran dan memberi siswa jalur yang jelas untuk memahami, mempraktikkan, lalu menghasilkan karya.</p></div><div className="flex flex-col gap-3 sm:flex-row"><Link href="/tentang"><Button variant="outline"><Users size={17} />Kenali Ruang Sinergi</Button></Link><Link href="/jelajahi"><Button><Compass size={17} />Mulai menjelajah</Button></Link></div></div></section>
-  </main>;
+    </main>
+  );
 }

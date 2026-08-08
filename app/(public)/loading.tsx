@@ -1,3 +1,12 @@
 import { Skeleton } from "@/components/ui/skeleton";
-export default function PublicLoading() { return <main className="container-app py-12" aria-label="Memuat halaman"><Skeleton className="h-5 w-36" /><Skeleton className="mt-4 h-10 w-full max-w-xl" /><Skeleton className="mt-3 h-5 w-full max-w-md" /><div className="mt-10 grid gap-5 md:grid-cols-3">{[1, 2, 3].map((item) => <div key={item}><Skeleton className="aspect-[16/10] w-full" /><Skeleton className="mt-4 h-5 w-3/4" /><Skeleton className="mt-3 h-4 w-full" /></div>)}</div></main>; }
 
+export default function PublicLoading() {
+  return (
+    <main className="container-app py-8 sm:py-10" role="status" aria-live="polite">
+      <span className="sr-only">Memuat halaman</span>
+      <Skeleton className="h-[430px] w-full rounded-[28px] sm:h-[500px]" />
+      <Skeleton className="mt-14 h-8 w-72 max-w-full" />
+      <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{Array.from({ length: 6 }).map((_, index) => <Skeleton key={index} className="h-64 w-full rounded-[20px]" />)}</div>
+    </main>
+  );
+}

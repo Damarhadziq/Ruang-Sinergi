@@ -1,9 +1,18 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, ArrowUpRight, BookOpenCheck, CheckCircle2, Clock3, Gauge, Layers3, PlayCircle, Users } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import type { ElementType } from "react";
+import { DirectionArrowRight } from "@/components/ui/direction-icon";
+import { DetailBackLink } from "@/components/ui/detail-back-link";
+import BookBookmark from "@solar-icons/react/ssr/school/BookBookmark";
+import CheckCircle from "@solar-icons/react/ssr/ui/CheckCircle";
+import ClockCircle from "@solar-icons/react/ssr/time/ClockCircle";
+import SpeedometerMiddle from "@solar-icons/react/ssr/parts/SpeedometerMiddle";
+import Layers from "@solar-icons/react/ssr/tools/Layers";
+import PlayCircle from "@solar-icons/react/ssr/video/PlayCircle";
+import CupStar from "@solar-icons/react/ssr/ui/CupStar";
+import UsersGroupRounded from "@solar-icons/react/ssr/users/UsersGroupRounded";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { getDepartment, getMaterial, getProgram, programs } from "@/data/mock-data";
 
@@ -22,101 +31,61 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
 
   return (
     <main>
-      <section className="bg-white">
-        <div className="mx-auto w-full max-w-[1120px] px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_420px]">
-            <div>
-              <Badge className="bg-[var(--secondary)] text-[var(--primary)]">Program kolaborasi</Badge>
-              <h1 className="mt-5 max-w-3xl font-heading text-[38px] font-bold leading-[1.15] sm:text-[44px]">{program.title}</h1>
-              <p className="mt-5 max-w-2xl text-[15px] leading-7 text-[var(--muted-foreground)]">{program.description}</p>
-
-              <div className="mt-6 flex flex-wrap gap-2">
-                {program.departments.map((departmentSlug) => {
-                  const department = getDepartment(departmentSlug)!;
-                  return <Link key={departmentSlug} href={"/prodi/" + departmentSlug} className="rounded-full border border-[var(--border)] bg-white px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-[#fcfcfc]">{department.shortName}</Link>;
-                })}
-              </div>
-
-              <div className="mt-8 grid max-w-2xl grid-cols-3 gap-3">
-                <HeroStat icon={Layers3} value={String(items.length)} label="Tahap" />
-                <HeroStat icon={Clock3} value={String(totalDuration)} label="Menit" />
-                <HeroStat icon={Users} value={String(program.departments.length)} label="Bidang" />
-              </div>
-            </div>
-
-            <div>
-              <img src={program.image} alt={program.title} className="aspect-[16/10] w-full rounded-xl border border-[var(--border)] object-cover" />
-              <Card className="mt-3 p-4">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="font-semibold">Progres belajarmu</span>
-                  <span className="font-heading text-lg font-bold text-[var(--primary)]">{program.progress}%</span>
-                </div>
-                <Progress value={program.progress} className="mt-3" />
-                {firstMaterial && <Link href={"/materi/" + firstMaterial.slug} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)]">Lanjutkan program <ArrowRight size={15} /></Link>}
-              </Card>
-            </div>
+      <section className="program-hero">
+        <div className="mx-auto grid w-full max-w-[1180px] gap-8 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,1fr)_410px] lg:px-8">
+          <div className="self-center">
+            <DetailBackLink href="/" label="Kembali ke beranda" className="mb-8" />
+            <h1 className="text-page-title max-w-3xl">{program.title}</h1>
+            <p className="text-body-lg mt-5 max-w-prose text-[var(--muted-foreground)]">{program.description}</p>
+            <div className="mt-6 flex flex-wrap gap-2">{program.departments.map((departmentSlug) => { const department = getDepartment(departmentSlug)!; return <Link key={departmentSlug} href={"/prodi/" + departmentSlug} className="game-chip">{department.shortName}</Link>; })}</div>
+            <div className="mt-7 flex flex-wrap gap-2"><span className="game-chip"><Layers size={15} weight="BoldDuotone" />{items.length} tahap</span><span className="game-chip"><ClockCircle size={15} weight="BoldDuotone" />{totalDuration} menit</span><span className="game-chip"><UsersGroupRounded size={15} weight="BoldDuotone" />{program.departments.length} bidang</span></div>
           </div>
+          <div className="relative"><img loading="eager" fetchPriority="high" decoding="async" src={program.image} alt={program.title} className="game-visual aspect-[4/3] w-full object-cover" /><span className="text-badge game-floating absolute -bottom-3 left-5 inline-flex items-center gap-2 px-3 py-2 text-[#246fd8]"><CupStar size={16} weight="BoldDuotone" />{program.progress}% terselesaikan</span></div>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1120px] px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-        <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="eyebrow">Alur belajar</p>
-            <h2 className="section-title mt-2">Materi dalam program</h2>
+      <section className="mx-auto grid w-full max-w-[1180px] gap-10 px-4 py-14 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
+        <div className="min-w-0">
+          <h2 className="dashboard-title">Selesaikan quest satu per satu</h2>
+          <ol className="mission-path mt-8">
+            {items.map((material, index) => material && (
+              <li key={material.slug} className="mission-step">
+                <div className="mission-marker">{index < program.progress / 33 ? <CheckCircle size={19} weight="BoldDuotone" /> : index + 1}</div>
+                <Link href={"/materi/" + material.slug} className="mission-step-card group">
+                  <img loading="lazy" decoding="async" src={material.image} alt="" className="h-36 w-full object-cover sm:h-full sm:w-48" />
+                  <div className="min-w-0 p-5 pr-12">
+                    <div className="flex flex-wrap items-center gap-2"><Badge className="bg-[var(--secondary)] text-[var(--primary)]">Tahap {index + 1}</Badge><span className="text-meta text-[var(--muted-foreground)]">{getDepartment(material.department)?.shortName}</span></div>
+                    <h3 className="text-card-title mt-3">{material.title}</h3>
+                    <p className="text-body mt-2 line-clamp-2 text-[var(--muted-foreground)]">{material.summary}</p>
+                    <div className="text-meta mt-4 flex flex-wrap gap-3 text-[var(--muted-foreground)]"><span className="inline-flex items-center gap-1.5"><ClockCircle size={15} weight="BoldDuotone" />{material.duration} menit</span><span className="inline-flex items-center gap-1.5"><SpeedometerMiddle size={14} weight="BoldDuotone" />{material.difficulty}</span></div>
+                  </div>
+                  <DirectionArrowRight size={18} className="absolute bottom-5 right-5 text-[var(--primary)] transition-transform group-hover:translate-x-1" />
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <aside className="lg:sticky lg:top-24 lg:self-start">
+          <div className="program-progress-panel">
+            <h2 className="text-subtitle text-[#315eaf]">Progres quest</h2>
+            <div className="mt-3 flex items-end justify-between"><p className="font-heading text-4xl font-semibold leading-[1.1] tracking-[-0.025em] text-[#315eaf]">{program.progress}%</p><CupStar size={25} weight="BoldDuotone" className="text-[#765fd2]" /></div>
+            <div className="mt-4"><Progress value={program.progress} /></div>
+            <p className="text-small mt-4 text-[var(--muted-foreground)]">Lanjutkan dari tahap terakhir dan kumpulkan progresmu.</p>
+            {firstMaterial && <Link href={"/materi/" + firstMaterial.slug} className="flex justify-end"><Button className="mt-5 w-fit">Lanjutkan quest <DirectionArrowRight size={16} /></Button></Link>}
           </div>
-          <p className="text-sm text-[var(--muted-foreground)]">Selesaikan tahap sesuai urutan yang disarankan.</p>
-        </div>
 
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {items.map((material, index) => material && (
-            <Link href={"/materi/" + material.slug} key={material.slug} className="group">
-              <Card className="flex h-full flex-col overflow-hidden transition-colors hover:bg-[#fcfcfc]">
-                <img src={material.image} alt="" className="aspect-[16/9] w-full object-cover" />
-                <div className="flex flex-1 flex-col p-5">
-                  <div className="flex items-center justify-between gap-3">
-                    <Badge className="bg-[var(--secondary)] text-[var(--primary)]">Tahap {index + 1}</Badge>
-                    {index < program.progress / 33 ? <CheckCircle2 size={18} className="text-[var(--primary)]" /> : <ArrowUpRight size={18} className="text-[var(--muted-foreground)]" />}
-                  </div>
-                  <p className="mt-4 text-xs font-medium text-[var(--muted-foreground)]">{material.type} · {getDepartment(material.department)?.shortName}</p>
-                  <h3 className="mt-2 font-heading text-xl font-bold leading-[1.3]">{material.title}</h3>
-                  <p className="mt-2 line-clamp-3 text-sm leading-6 text-[var(--muted-foreground)]">{material.summary}</p>
-                  <div className="mt-auto flex flex-wrap items-center gap-3 pt-5 text-xs text-[var(--muted-foreground)]">
-                    <span className="inline-flex items-center gap-1.5"><Clock3 size={14} />{material.duration} menit</span>
-                    <span className="inline-flex items-center gap-1.5"><Gauge size={14} />{material.difficulty}</span>
-                  </div>
-                </div>
-              </Card>
-            </Link>
-          ))}
-        </div>
-
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
-          <InfoCard icon={BookOpenCheck} title="Belajar terarah" text="Setiap tahap memiliki tujuan, aktivitas, dan evaluasi singkat yang saling terhubung." />
-          <InfoCard icon={PlayCircle} title="Praktik kontekstual" text="Materi menghubungkan komunikasi, teknologi, dan keterampilan praktik di lingkungan kerja." />
-          <InfoCard icon={CheckCircle2} title="Progres tersimpan" text="Lanjutkan program dari tahap terakhir tanpa kehilangan alur belajar yang sudah ditempuh." />
-        </div>
+          <div className="mt-7 grid gap-5">
+            <ProgramBenefit icon={BookBookmark} title="Belajar terarah" text="Setiap tahap saling terhubung." />
+            <ProgramBenefit icon={PlayCircle} title="Praktik kontekstual" text="Dekat dengan situasi nyata." />
+            <ProgramBenefit icon={CheckCircle} title="Progres tersimpan" text="Lanjutkan tanpa kehilangan alur." />
+          </div>
+        </aside>
       </section>
     </main>
   );
 }
 
-function HeroStat({ icon: Icon, value, label }: { icon: LucideIcon; value: string; label: string }) {
-  return (
-    <div className="rounded-xl border border-[var(--border)] bg-white p-3">
-      <Icon size={16} className="text-[var(--primary)]" />
-      <p className="mt-3 font-heading text-xl font-bold">{value}</p>
-      <p className="mt-0.5 text-[11px] text-[var(--muted-foreground)]">{label}</p>
-    </div>
-  );
-}
-
-function InfoCard({ icon: Icon, title, text }: { icon: LucideIcon; title: string; text: string }) {
-  return (
-    <Card className="p-5">
-      <Icon size={20} className="text-[var(--primary)]" />
-      <h3 className="mt-4 font-heading text-lg font-bold">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-[var(--muted-foreground)]">{text}</p>
-    </Card>
-  );
+function ProgramBenefit({ icon: Icon, title, text }: { icon: ElementType; title: string; text: string }) {
+  return <div className="flex gap-3"><span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[#eaf3ff] text-[var(--primary)]"><Icon size={19} weight="BoldDuotone" /></span><div><h3 className="text-label">{title}</h3><p className="text-meta mt-1 text-[var(--muted-foreground)]">{text}</p></div></div>;
 }
