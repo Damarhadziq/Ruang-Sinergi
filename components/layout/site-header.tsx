@@ -32,12 +32,14 @@ export function SiteHeader() {
       })),
     },
     {
-      label: "Program",
+      label: "Tentang",
       bgColor: "#eaf3ff",
       textColor: "#17345f",
       links: [
-        { label: "Program kolaborasi", href: "/program", ariaLabel: "Lihat program kolaborasi" },
-        { label: "Persiapan dunia kerja", href: "/program/persiapan-dunia-kerja", ariaLabel: "Lihat program persiapan dunia kerja" },
+        { label: "Tentang Ruang Sinergi", href: "/tentang", ariaLabel: "Tentang Ruang Sinergi" },
+        { label: "Instagram", href: "https://www.instagram.com/", ariaLabel: "Buka Instagram Ruang Sinergi" },
+        { label: "Email", href: "mailto:ruangsinergi@smkn1semarang.sch.id", ariaLabel: "Kirim email ke Ruang Sinergi" },
+        { label: "Dokumentasi", href: "/tentang#dokumentasi", ariaLabel: "Lihat dokumentasi Ruang Sinergi" },
       ],
     },
   ], []);

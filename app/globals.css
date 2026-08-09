@@ -1348,13 +1348,13 @@ img[fetchpriority="high"] {
   min-height: 17rem;
   overflow: hidden;
   flex-direction: column;
-  border: 1px solid color-mix(in srgb, var(--department-color) 17%, #ececec);
+  border: 1px solid #ececec;
   border-radius: 16px;
   background: linear-gradient(135deg, var(--department-soft) 0%, #fff 78%);
   padding: 1.35rem;
   transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
 }
-.editorial-department:hover { border-color: color-mix(in srgb, var(--department-color) 34%, #ececec); background: linear-gradient(135deg, var(--department-soft) 0%, #fff 70%); transform: translateY(-2px); }
+.editorial-department:hover { border-color: #ececec; background: linear-gradient(135deg, var(--department-soft) 0%, #fff 70%); transform: translateY(-2px); }
 .department-context-pattern { position: absolute; right: -1.5rem; bottom: -1.75rem; width: 12rem; height: 9rem; color: var(--department-color); opacity: .09; pointer-events: none; }
 .department-context-pattern::before,
 .department-context-pattern::after { position: absolute; content: ""; }

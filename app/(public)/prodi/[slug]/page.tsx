@@ -8,7 +8,7 @@ import FileText from "@solar-icons/react/ssr/files/FileText";
 import Checklist from "@solar-icons/react/ssr/list/Checklist";
 import UsersGroupRounded from "@solar-icons/react/ssr/users/UsersGroupRounded";
 import { MaterialCard } from "@/components/cards/material-card";
-import { gallery, getDepartment, materials, programs } from "@/data/mock-data";
+import { gallery, getDepartment, materials } from "@/data/mock-data";
 
 function Stat({ icon, value, label }: { icon: React.ReactNode; value: number; label: string }) {
   return <div className="game-chip min-w-28"><span className="text-[var(--primary)]">{icon}</span><span><strong className="text-label block text-[var(--foreground)]">{value}</strong><span className="text-meta">{label}</span></span></div>;
@@ -21,7 +21,6 @@ export default async function DepartmentPage({ params }: { params: Promise<{ slu
 
   const items = materials.filter((item) => item.department === slug);
   const works = gallery.filter((item) => item.department === slug);
-  const collabs = programs.filter((item) => item.departments.includes(slug));
 
   return <main>
     <section className="game-soft-section">
@@ -48,6 +47,5 @@ export default async function DepartmentPage({ params }: { params: Promise<{ slu
 
     {works.length > 0 && <section className="container-app section-space"><h2 className="section-title">Karya dari siswa</h2><div className="mt-8 grid gap-5 sm:grid-cols-2">{works.map((work) => <Link href="/galeri" key={work.id}><img loading="lazy" decoding="async" src={work.image} alt={work.title} className="aspect-[16/8] w-full rounded-2xl border border-[var(--border)] object-cover" /><h3 className="text-card-title mt-3">{work.title}</h3><p className="text-small mt-1 text-[var(--muted-foreground)]">{work.student}</p></Link>)}</div></section>}
 
-    {collabs.length > 0 && <section className="container-app pb-10"><div className="py-8"><h2 className="text-section-title">Program kolaborasi terkait</h2><div className="mt-5 grid gap-3 sm:grid-cols-2">{collabs.map((program) => <Link href={`/program/${program.slug}`} key={program.slug} className="text-label quest-row flex items-center justify-between rounded-2xl p-4">{program.title}<DirectionArrowRight size={18} /></Link>)}</div></div></section>}
   </main>;
 }

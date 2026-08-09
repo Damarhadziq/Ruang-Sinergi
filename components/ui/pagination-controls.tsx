@@ -15,6 +15,8 @@ export function PaginationControls({
   onPageChange: (page: number) => void;
   className?: string;
 }) {
+  if (totalPages <= 1) return null;
+
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
 
   return (
