@@ -15,6 +15,7 @@ import { DepartmentIcon } from "@/components/department-icon";
 import { PaginationControls } from "@/components/ui/pagination-controls";
 import { SiteHeader } from "@/components/layout/site-header";
 import { Footer } from "@/components/layout/footer";
+import { LottieVisual } from "@/components/motion/lottie-visual";
 
 import {
   practiceDepartments,
@@ -172,14 +173,21 @@ function DepartmentLanding({ completed, onOpen, reduceMotion }: { completed: str
 
   return (
     <div>
-      <section className="max-w-3xl py-4 sm:py-7 lg:py-10">
-        <h1 className="text-page-title text-[#15315b]">Latihan berdasarkan bidang</h1>
-        <p className="text-body-lg mt-4 max-w-prose text-[#58708f]">Pilih bidang dan kerjakan aktivitas singkat dari materi yang sudah tersedia.</p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <span className="practice-pill"><CupStar size={15} weight="BoldDuotone" />{completed.length} selesai</span>
-          <span className="practice-pill"><Bolt size={15} weight="BoldDuotone" />{totalExercises} latihan</span>
-          <span className="practice-pill"><ClockCircle size={15} weight="BoldDuotone" />3–6 menit</span>
+      <section className="practice-landing-hero">
+        <div className="practice-landing-copy">
+          <h1 className="text-page-title text-[#15315b]">Latihan berdasarkan bidang</h1>
+          <p className="text-body-lg mt-4 max-w-prose text-[#58708f]">Pilih bidang dan kerjakan aktivitas singkat dari materi yang sudah tersedia.</p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <span className="practice-pill"><CupStar size={15} weight="BoldDuotone" />{completed.length} selesai</span>
+            <span className="practice-pill"><Bolt size={15} weight="BoldDuotone" />{totalExercises} latihan</span>
+            <span className="practice-pill"><ClockCircle size={15} weight="BoldDuotone" />3–6 menit</span>
+          </div>
         </div>
+        <LottieVisual
+          src="https://lottie.host/d32be606-2186-4701-8e2b-ce8d52c5fe7c/eqhrLUjGuS.lottie"
+          className="practice-hero-lottie"
+          label="Ilustrasi latihan interaktif"
+        />
       </section>
 
       <section className="mt-10">

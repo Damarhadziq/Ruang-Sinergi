@@ -1314,9 +1314,9 @@ img[fetchpriority="high"] {
   gap: 3rem;
   padding-block: clamp(4.5rem, 8vw, 6rem);
 }
-.editorial-hero-copy { max-width: 42rem; }
+.editorial-hero-copy { max-width: 36rem; }
 .editorial-hero-copy h1 {
-  max-width: 650px;
+  max-width: 540px;
   margin-top: 1rem;
   font-family: "Commissioner", "Cantarell", ui-sans-serif, system-ui;
   font-size: clamp(2.35rem, 5vw, 3.5rem);
@@ -1331,7 +1331,7 @@ img[fetchpriority="high"] {
 .editorial-text-link:hover svg { transform: translateX(2px); }
 .editorial-inline-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem .85rem; margin-top: 1.8rem; color: var(--muted-foreground); font-size: .8125rem; line-height: 1.45; }
 .editorial-inline-meta i { width: 4px; height: 4px; border-radius: 50%; background: #8bb4e9; }
-.editorial-hero-visual { min-width: 0; align-self: end; }
+.editorial-hero-visual { display: flex; min-width: 0; align-self: center; align-items: center; justify-content: center; }
 .editorial-hero-visual .learning-journey { min-height: 25rem; border: 0; border-radius: 0; background: transparent; }
 .editorial-hero-visual .learning-journey::before { opacity: .62; }
 .editorial-hero-visual .learning-journey::after { opacity: .72; }
@@ -1345,7 +1345,7 @@ img[fetchpriority="high"] {
 .editorial-department {
   position: relative;
   display: flex;
-  min-height: 17rem;
+  min-height: 14rem;
   overflow: hidden;
   flex-direction: column;
   border: 1px solid #ececec;
@@ -1406,15 +1406,9 @@ img[fetchpriority="high"] {
 }
 @media (min-width: 1024px) {
   .editorial-hero-grid { grid-template-columns: repeat(12,minmax(0,1fr)); }
-  .editorial-hero-copy { grid-column: 1 / span 7; }
-  .editorial-hero-visual { grid-column: 8 / span 5; transform: translateY(2rem); }
-  .editorial-department-grid { grid-template-columns: repeat(12,minmax(0,1fr)); }
-  .editorial-department-grid > :nth-child(1) { grid-column: span 7; }
-  .editorial-department-grid > :nth-child(2) { grid-column: span 5; }
-  .editorial-department-grid > :nth-child(3) { grid-column: span 4; }
-  .editorial-department-grid > :nth-child(4) { grid-column: span 8; }
-  .editorial-department-grid > :nth-child(5),
-  .editorial-department-grid > :nth-child(6) { grid-column: span 6; }
+  .editorial-hero-copy { grid-column: 1 / span 6; }
+  .editorial-hero-visual { grid-column: 7 / span 6; }
+  .editorial-department-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
   .editorial-program-heading { grid-template-columns: minmax(0,1fr) minmax(22rem,.7fr); gap: 5rem; }
 }
 @media (max-width: 899px) {
@@ -1594,6 +1588,10 @@ img[fetchpriority="high"] {
   .material-activity-cta { align-items: flex-start; flex-direction: column; }
 }
 
+@media (min-width: 640px) and (max-width: 1023px) {
+  .editorial-department-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+
 /* Unified material cards: regular responsive grids, never editorial bento. */
 .editorial-featured-materials,
 .explore-editorial-results {
@@ -1747,4 +1745,45 @@ img[fetchpriority="high"] {
 @media (max-width: 639px) {
   .practice-session-toolbar { border-radius: 12px; }
   .practice-session-card { border-radius: 18px; }
+}
+
+/* Lottie hero visuals use the source animation's own canvas ratio. */
+.lottie-visual {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.home-lottie-visual {
+  width: 130%;
+  max-width: none;
+  margin-inline: -15%;
+}
+
+.practice-landing-hero {
+  display: grid;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-block: 1rem 2.5rem;
+}
+
+.practice-landing-copy {
+  max-width: 43rem;
+}
+
+@media (min-width: 900px) {
+  .practice-landing-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, .72fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .home-lottie-visual {
+    width: 112%;
+    margin-inline: -6%;
+  }
 }
