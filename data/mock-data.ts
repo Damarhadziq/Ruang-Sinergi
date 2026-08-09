@@ -71,7 +71,7 @@ export const materials: Material[] = [
       { id: "c2", block_type: "checklist", title: "Petunjuk kekuatan yang bisa diamati", items: ["Saya menikmati prosesnya meski menghadapi kesulitan", "Saya sering diminta membantu orang lain pada bidang ini", "Saya mampu menjelaskan prosesnya dengan cukup jelas", "Saya terdorong memperbaiki hasil tanpa harus diminta"] },
       { id: "c3", block_type: "reflection", prompt: "Tuliskan dua pengalaman yang membuatmu bangga. Keterampilan, sikap, atau kebiasaan apa yang muncul pada kedua pengalaman tersebut?" },
       { id: "c4", block_type: "steps", title: "Mengubah potensi menjadi rencana", steps: ["Pilih satu kekuatan yang paling sering muncul.", "Tentukan situasi sekolah atau praktik yang dapat menjadi tempat latihan.", "Buat target kecil yang dapat diselesaikan dalam satu minggu.", "Minta umpan balik dari satu orang yang dipercaya.", "Catat kemajuan dan tentukan langkah berikutnya."] },
-      { id: "c5", block_type: "checklist", title: "Rencana minggu ini", items: ["Mencoba satu tantangan baru", "Meminta umpan balik yang spesifik", "Mencatat kemajuan harian", "Mengevaluasi hasil di akhir minggu"] },
+      { id: "c5", block_type: "checklist", title: "Rencana minggu ini", items: ["Mencoba satu hal baru", "Meminta umpan balik yang spesifik", "Mencatat kemajuan harian", "Mengevaluasi hasil di akhir minggu"] },
     ],
   },
   {
@@ -254,4 +254,3 @@ export const gallery: GalleryItem[] = [
 export const getDepartment = (slug: string) => departments.find((item) => item.slug === slug);
 export const getMaterial = (slug: string) => materials.find((item) => item.slug === slug);
 export const getProgram = (slug: string) => programs.find((item) => item.slug === slug);
-

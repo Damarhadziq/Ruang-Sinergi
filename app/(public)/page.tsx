@@ -1,79 +1,104 @@
 import Link from "next/link";
+import ClockCircle from "@solar-icons/react/ssr/time/ClockCircle";
+import Layers from "@solar-icons/react/ssr/tools/Layers";
 import { DirectionArrowRight } from "@/components/ui/direction-icon";
-import Book2 from "@solar-icons/react/ssr/school/Book2";
-import Gamepad from "@solar-icons/react/ssr/devices/Gamepad";
 import { Button } from "@/components/ui/button";
 import { DepartmentCard } from "@/components/cards/department-card";
 import { MaterialCard } from "@/components/cards/material-card";
-import { departments, materials, programs } from "@/data/mock-data";
+import { FadeIn } from "@/components/motion/fade-in";
+import { StaggerList } from "@/components/motion/stagger-list";
+import { LearningJourney } from "@/components/illustrations/learning-journey";
+import { ProgramRoute } from "@/components/illustrations/program-route";
+import { getMaterial, materials, programs, departments } from "@/data/mock-data";
+
+const departmentSpans = [
+  "lg:col-span-7",
+  "lg:col-span-5",
+  "lg:col-span-4",
+  "lg:col-span-8",
+  "lg:col-span-6",
+  "lg:col-span-6",
+];
 
 export default function HomePage() {
   const featuredMaterials = materials.filter((item) => item.featured).slice(0, 3);
 
   return (
-    <main className="learning-dashboard">
-      <div className="container-app py-8 sm:py-10">
-        <section className="dashboard-hero dashboard-hero-compact dashboard-hero--image-bg">
-          <div className="dashboard-hero-copy">
-            <h1 className="text-page-title max-w-[460px] text-white">Taklukkan satu misi kecil setiap hari.</h1>
-            <p className="text-body-lg mt-4 max-w-prose text-white/85">
-              Pilih materi sesuai jurusanmu, selesaikan aktivitasnya, lalu uji pemahaman lewat latihan interaktif.
-            </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Link href="/latihan">
-                <Button variant="secondary" className="hero-white-button w-full sm:w-auto">
-                  <Gamepad size={17} weight="BoldDuotone" />Mulai latihan
-                </Button>
-              </Link>
-              <Link href="/jelajahi">
-                <Button variant="outline" className="hero-white-button w-full sm:w-auto">
-                  <Book2 size={17} weight="BoldDuotone" />Cari materi
-                </Button>
-              </Link>
+    <main className="editorial-site">
+      <section className="editorial-hero">
+        <div className="container-app editorial-hero-grid">
+          <FadeIn className="editorial-hero-copy">
+            <h1>Belajar lintas bidang dalam satu ruang.</h1>
+            <p className="editorial-hero-description">Temukan materi, aktivitas interaktif, dan program kolaborasi yang menghubungkan keterampilan sekolah dengan dunia nyata.</p>
+            <div className="editorial-hero-actions">
+              <Link href="/jelajahi"><Button>Jelajahi materi <DirectionArrowRight size={16} /></Button></Link>
+              <Link href="/program" className="editorial-text-link">Lihat program <DirectionArrowRight size={15} /></Link>
             </div>
-          </div>
+            <div className="editorial-inline-meta" aria-label="Ringkasan Ruang Sinergi">
+              <span>6 bidang</span><i aria-hidden="true" /><span>Beragam media</span><i aria-hidden="true" /><span>Program lintas bidang</span>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.08} className="editorial-hero-visual"><LearningJourney /></FadeIn>
+        </div>
+      </section>
 
-          <div className="dashboard-hero-progress">
-            <div className="text-meta flex items-center justify-between text-white"><span>Progres tantangan</span><span>2 dari 3</span></div>
-            <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/20"><div className="h-full w-2/3 rounded-full bg-[#9bcbff]" /></div>
-          </div>
-        </section>
+      <section className="editorial-section container-app">
+        <div className="editorial-intro-grid">
+          <h2 className="text-section-title">Enam bidang, banyak cara untuk berkembang.</h2>
+          <p className="text-body max-w-xl text-[var(--muted-foreground)]">Pilih titik awal yang paling dekat dengan minatmu. Setiap bidang punya karakter, media, dan pengalaman belajar yang berbeda.</p>
+        </div>
+        <StaggerList className="editorial-department-grid">
+          {departments.map((department, index) => <DepartmentCard key={department.slug} department={department} className={departmentSpans[index]} />)}
+        </StaggerList>
+      </section>
 
-        <section className="dashboard-section">
-          <div className="dashboard-section-heading">
-            <h2 className="dashboard-title">Pilih arena jurusanmu</h2>
+      <section className="editorial-surface-section">
+        <div className="container-app editorial-section">
+          <div className="editorial-intro-grid">
+            <h2 className="text-section-title">Mulai dari hal yang relevan hari ini.</h2>
+            <p className="text-body max-w-lg text-[var(--muted-foreground)]">Satu materi utama untuk dipelajari lebih dalam, ditemani pilihan singkat dari bidang lain.</p>
           </div>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {departments.map((department) => <DepartmentCard key={department.slug} department={department} />)}
-          </div>
-        </section>
-
-        <section className="dashboard-section">
-          <div className="dashboard-section-heading">
-            <h2 className="dashboard-title">Misi pilihan untukmu</h2>
-            <Link href="/jelajahi" className="dashboard-link">Lihat semua <DirectionArrowRight size={15} /></Link>
-          </div>
-          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="editorial-featured-materials">
             {featuredMaterials.map((material) => <MaterialCard key={material.slug} material={material} />)}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="dashboard-section pb-8">
-          <div className="dashboard-section-heading"><h2 className="dashboard-title">Tantangan bersama</h2></div>
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {programs.map((program, index) => (
-              <Link href={"/program/" + program.slug} key={program.slug} className="dashboard-quest">
-                <span className="quest-index">{String(index + 1).padStart(2, "0")}</span>
-                <div className="min-w-0">
-                  <p className="text-label line-clamp-1">{program.title}</p>
-                  <p className="text-meta mt-1 text-[var(--muted-foreground)]">{program.departments.length} bidang · tantangan kolaborasi</p>
-                </div>
-                <DirectionArrowRight size={16} className="shrink-0 text-[var(--primary)]" />
+      <section className="editorial-section container-app">
+        <div className="editorial-program-heading">
+          <h2 className="text-section-title max-w-xl">Satu tujuan, dirangkai dari beberapa bidang.</h2>
+          <p className="text-body max-w-lg text-[var(--muted-foreground)]">Ikuti alur belajar yang menghubungkan pengetahuan teknis, komunikasi, kreativitas, dan kebiasaan kerja.</p>
+        </div>
+        <div className="editorial-program-list">
+          {programs.map((program, index) => {
+            const programMaterials = program.materialSlugs.map(getMaterial).filter(Boolean);
+            const duration = programMaterials.reduce((total, material) => total + (material?.duration ?? 0), 0);
+            return (
+              <Link href={`/program/${program.slug}`} key={program.slug} className="editorial-program-row group">
+                <span className="editorial-program-index">{String(index + 1).padStart(2, "0")}</span>
+                <div className="min-w-0"><h3 className="text-card-title">{program.title}</h3><p className="text-body mt-2 max-w-xl text-[var(--muted-foreground)]">{program.description}</p></div>
+                <ProgramRoute departments={program.departments} />
+                <div className="text-meta flex flex-wrap gap-4 text-[var(--muted-foreground)]"><span className="inline-flex items-center gap-1.5"><Layers size={14} weight="BoldDuotone" />{programMaterials.length} tahap</span><span className="inline-flex items-center gap-1.5"><ClockCircle size={14} weight="BoldDuotone" />{duration} menit</span></div>
+                <DirectionArrowRight size={17} className="text-[var(--primary)] transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
-            ))}
-          </div>
-        </section>
-      </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="editorial-about-section">
+        <div className="container-app editorial-about-grid">
+          <h2 className="text-section-title max-w-lg">Belajar tidak harus berhenti di batas satu bidang.</h2>
+          <div><p className="text-body max-w-2xl text-[var(--muted-foreground)]">Portal ini menyatukan materi dari enam bidang di SMK Negeri 1 Semarang agar siswa dapat melihat hubungan antara pengetahuan, praktik, dan tantangan nyata. Kamu bisa memulai dari bidangmu sendiri lalu memperluas cara pandang melalui program kolaborasi.</p><div className="editorial-inline-meta mt-6"><span>Materi terkurasi guru</span><i aria-hidden="true" /><span>Siap diakses dari ponsel</span></div></div>
+        </div>
+      </section>
+
+      <section className="container-app py-14 lg:py-16">
+        <div className="editorial-final-cta">
+          <div><h2 className="text-section-title">Mulai dari satu materi kecil.</h2><p className="text-body mt-2 text-[var(--muted-foreground)]">Pilih bidangmu, temukan topik, lalu lanjutkan sesuai ritmemu.</p></div>
+          <Link href="/jelajahi"><Button>Jelajahi materi <DirectionArrowRight size={16} /></Button></Link>
+        </div>
+      </section>
     </main>
   );
 }

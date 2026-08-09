@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import Download from "@solar-icons/react/icons/arrows-action/Download";
 import LinkRoundAngle from "@solar-icons/react/icons/text-formatting/LinkRoundAngle";
 import FileText from "@solar-icons/react/icons/files/FileText";
@@ -16,14 +17,24 @@ import { ImageHotspotBlock } from "./image-hotspot-block";
 
 function Steps({ title, steps }: { title: string; steps: string[] }) { return <div className="block-surface"><h3 className="block-title">{title}</h3><ol className="mt-5 grid gap-4">{steps.map((step, i) => <li key={step} className="flex gap-4"><span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#315c4c] text-label text-white">{i + 1}</span><p className="text-small pt-1 text-[#565852]">{step}</p></li>)}</ol></div>; }
 
+function VideoBlock({ title, duration }: { title: string; duration: string }) {
+  const [playing, setPlaying] = useState(false);
+  return <div className="relative grid aspect-video place-items-center overflow-hidden rounded-2xl bg-[#202622] text-white"><div className="absolute inset-0 bg-[#344039]" /><button type="button" onClick={() => setPlaying((value) => !value)} className="media-play-button relative grid h-16 w-16 place-items-center rounded-full bg-white text-[#315c4c]" aria-label={playing ? "Jeda video" : "Putar video"} aria-pressed={playing}><Play size={24} weight="BoldDuotone" /></button><div className="text-small absolute inset-x-4 bottom-4 flex justify-between gap-3"><span>{playing ? "Sedang diputar · " : ""}{title}</span><span className="rounded-full bg-black/25 px-2 py-0.5">{duration}</span></div></div>;
+}
+
+function AudioBlock({ title, duration }: { title: string; duration: string }) {
+  const [playing, setPlaying] = useState(false);
+  return <div className="block-surface flex items-center gap-4"><button type="button" onClick={() => setPlaying((value) => !value)} aria-label={playing ? "Jeda audio" : "Putar audio"} aria-pressed={playing} className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#805a83] text-white"><Play size={18} weight="BoldDuotone" /></button><div className="min-w-0 flex-1"><p className="text-label">{title}</p><div className={`media-wave mt-2 h-8 rounded bg-[repeating-linear-gradient(90deg,#c7abc9_0_2px,transparent_2px_6px)] opacity-70${playing ? " is-playing" : ""}`} /></div><span className="text-meta text-[#777]">{duration}</span></div>;
+}
+
 export function BlockRenderer({ blocks }: { blocks: ContentBlock[] }) {
   return <div className="grid gap-6">{blocks.map((block) => {
     switch (block.block_type) {
       case "text": return <section key={block.id} className="prose-copy max-w-[880px]"><h2>{block.heading}</h2><p>{block.body}</p></section>;
       case "image": return <figure key={block.id}><img loading="lazy" decoding="async" src={block.src} alt={block.alt} className="w-full rounded-2xl" /><figcaption className="text-meta mt-2 text-center text-[#777]">{block.caption}</figcaption></figure>;
-      case "gallery": return <div key={block.id} className="grid grid-cols-2 gap-3">{block.images.map((image) => <img loading="lazy" decoding="async" key={image.src} src={image.src} alt={image.alt} className="aspect-square rounded-2xl object-cover" />)}</div>;
-      case "video": return <div key={block.id} className="relative grid aspect-video place-items-center overflow-hidden rounded-2xl bg-[#202622] text-white"><div className="absolute inset-0 bg-[#344039]" /><button className="relative grid h-16 w-16 place-items-center rounded-full bg-white text-[#315c4c]" aria-label="Putar video"><Play size={24} weight="BoldDuotone" /></button><div className="text-small absolute inset-x-4 bottom-4 flex justify-between"><span>{block.title}</span><span>{block.duration}</span></div></div>;
-      case "audio": return <div key={block.id} className="block-surface flex items-center gap-4"><button className="grid h-12 w-12 place-items-center rounded-full bg-[#805a83] text-white"><Play size={18} weight="BoldDuotone" /></button><div className="min-w-0 flex-1"><p className="text-label">{block.title}</p><div className="mt-2 h-8 rounded bg-[repeating-linear-gradient(90deg,#c7abc9_0_2px,transparent_2px_6px)] opacity-70" /></div><span className="text-meta text-[#777]">{block.duration}</span></div>;
+      case "gallery": return <div key={block.id} className="grid grid-cols-2 gap-3">{block.images.map((image) => <div key={image.src} className="group overflow-hidden rounded-2xl"><img loading="lazy" decoding="async" src={image.src} alt={image.alt} className="aspect-square w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]" /></div>)}</div>;
+      case "video": return <VideoBlock key={block.id} title={block.title} duration={block.duration} />;
+      case "audio": return <AudioBlock key={block.id} title={block.title} duration={block.duration} />;
       case "document": return <div key={block.id} className="block-surface flex items-center gap-4"><span className="grid h-12 w-12 place-items-center rounded-xl bg-[#f1eee9] text-[#76574b]"><FileText size={22} weight="BoldDuotone" /></span><div className="flex-1"><p className="text-label">{block.title}</p><p className="text-small text-[#777]">PDF · {block.pages} halaman</p></div><Button variant="outline" size="sm"><Download size={16} weight="BoldDuotone" /> Unduh</Button></div>;
       case "steps": return <Steps key={block.id} {...block} />;
       case "checklist": return <ChecklistBlock key={block.id} {...block} />;

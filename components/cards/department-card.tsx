@@ -1,18 +1,29 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { DirectionArrowRight } from "@/components/ui/direction-icon";
 import { DepartmentIcon } from "@/components/department-icon";
+import { cn } from "@/lib/utils";
 import type { Department } from "@/types";
 
-export function DepartmentCard({ department }: { department: Department }) {
+export function DepartmentCard({ department, className }: { department: Department; className?: string }) {
   return (
-    <article className="game-card action-button-card flex min-h-60 flex-col rounded-[20px] p-5">
-      <div className="flex items-start justify-between gap-4">
-        <DepartmentIcon slug={department.slug} className="h-12 w-12" />
-        <span className="game-card-progress">{department.stats.materials} materi</span>
+    <Link
+      href={`/jelajahi?department=${department.slug}`}
+      className={cn("editorial-department group", className)}
+      style={{ "--department-color": department.color, "--department-soft": department.soft } as CSSProperties}
+      aria-label={`Jelajahi materi ${department.shortName}`}
+    >
+      <div className="relative flex items-start justify-between gap-4">
+        <DepartmentIcon slug={department.slug} className="h-11 w-11" />
+        <span className="text-meta text-[var(--muted-foreground)]">{department.stats.materials} materi</span>
       </div>
-      <h3 className="text-card-title mt-5">{department.shortName}</h3>
-      <p className="text-body mt-2 line-clamp-2 flex-1 text-[var(--muted-foreground)]">{department.description}</p>
-      <Link href={`/prodi/${department.slug}`} className="card-skeu-action ml-auto mt-5 w-fit" aria-label={`Lihat materi ${department.shortName}`}>Lihat materi <DirectionArrowRight size={14} /></Link>
-    </article>
+      <div className="relative mt-auto pt-8">
+        <h3 className="text-card-title">{department.shortName}</h3>
+        <p className="text-body mt-2 max-w-sm text-[var(--muted-foreground)]">{department.description}</p>
+        <span className="text-label mt-5 inline-flex items-center gap-2 text-[var(--primary)]">
+          Jelajahi <DirectionArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+        </span>
+      </div>
+    </Link>
   );
 }

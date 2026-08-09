@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { Suspense } from "react";
+import { NavigationLoading } from "@/components/layout/navigation-loading";
 import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -18,5 +20,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="id"><body>{children}</body></html>;
+  return (
+    <html lang="id">
+      <body>
+        <Suspense fallback={null}>
+          <NavigationLoading />
+        </Suspense>
+        {children}
+      </body>
+    </html>
+  );
 }

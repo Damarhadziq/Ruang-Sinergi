@@ -1,0 +1,25 @@
+.team-drift-wall {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.team-drift-wall .drift-wall__inner {
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.team-drift-wall .drift-wall__overlay {
+  mix-blend-mode: screen;
+}
+
+.team-drift-wall .drift-wall__tile.is-active .drift-wall__inner,
+.team-drift-wall .drift-wall__tile:focus-visible .drift-wall__inner {
+  box-shadow: none;
+}
+
+@media (max-width: 767px) {
+  .team-drift-wall {
+    height: 440px !important;
+  }
+}

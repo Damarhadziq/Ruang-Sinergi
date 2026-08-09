@@ -109,7 +109,7 @@ export const practiceDepartments: PracticeDepartment[] = [
         questions: [
           { id: "b-p-1", kind: "choice", label: "Refleksi", prompt: "Petunjuk paling kuat bahwa sebuah aktivitas merupakan kekuatanmu adalah...", options: ["Kamu tekun dan terus ingin memperbaikinya", "Aktivitas itu sedang populer", "Temanmu memilihnya", "Aktivitas itu selalu mudah"], answer: 0, explanation: "Kekuatan sering terlihat dari ketekunan, proses belajar, dan pola yang berulang." },
           { id: "b-p-2", kind: "sequence", label: "Susun rencana", prompt: "Susun proses mengembangkan satu kekuatan diri.", items: ["Minta umpan balik", "Pilih kekuatan", "Catat kemajuan", "Buat target kecil"], answer: ["Pilih kekuatan", "Buat target kecil", "Minta umpan balik", "Catat kemajuan"], explanation: "Mulai dari kekuatan yang dipilih, buat target, cari umpan balik, lalu catat kemajuan." },
-          { id: "b-p-3", kind: "true-false", label: "Benar atau salah", prompt: "Potensi hanya dapat dilihat dari prestasi besar.", options: ["Benar", "Salah"], answer: 1, explanation: "Potensi juga terlihat dari kebiasaan, minat, dan cara menghadapi tantangan." },
+          { id: "b-p-3", kind: "true-false", label: "Benar atau salah", prompt: "Potensi hanya dapat dilihat dari prestasi besar.", options: ["Benar", "Salah"], answer: 1, explanation: "Potensi juga terlihat dari kebiasaan, minat, dan cara menghadapi situasi sulit." },
         ],
       },
       {
@@ -215,7 +215,7 @@ export const practiceDepartments: PracticeDepartment[] = [
     exercises: [
       {
         slug: "rangkaian-dasar",
-        title: "Misi rangkaian dasar",
+        title: "Rangkaian dasar",
         description: "Telusuri jalur arus dan pahami fungsi sakelar serta beban.",
         format: "Visual + logika",
         duration: 5,
